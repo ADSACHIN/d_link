@@ -1,0 +1,16 @@
+{
+  "name": "d_link",
+  "version": "1.0.0",
+  "description": "Static file download server with forced download support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

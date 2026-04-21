@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Download Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #e0e0e0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.35rem;
+      background: linear-gradient(90deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 2rem;
+    }
+
+    .file-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      margin-bottom: 1rem;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .file-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(167, 139, 250, 0.35);
+    }
+
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .file-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .file-icon.pdf  { background: rgba(239, 68, 68, 0.18); color: #f87171; }
+    .file-icon.img  { background: rgba(52, 211, 153, 0.18); color: #34d399; }
+    .file-icon.doc  { background: rgba(96, 165, 250, 0.18); color: #60a5fa; }
+    .file-icon.gen  { background: rgba(167, 139, 250, 0.18); color: #a78bfa; }
+
+    .file-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #f3f4f6;
+    }
+
+    .file-type {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45);
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+    }
+
+    .btn-download svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .info-box {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(96, 165, 250, 0.08);
+      border: 1px solid rgba(96, 165, 250, 0.18);
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: #93c5fd;
+      line-height: 1.65;
+    }
+
+    .info-box code {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.15rem 0.45rem;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      color: #c4b5fd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📁 File Downloads</h1>
+    <p class="subtitle">Click to download files from the server</p>
+
+    <p class="section-label">Available Files</p>
+
+    <!-- ── Example: PDF ── -->
+    <div class="file-card">
+      <div class="file-info">
+        <div class="file-icon pdf">PDF</div>
+        <div>
+          <div class="file-name">example.pdf</div>
+          <div class="file-type">PDF Document</div>
+        </div>
+      </div>
+      <a href="/download/example.pdf" class="btn-download" id="btn-download-pdf">
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-8 4h16v2H4v-2z"/></svg>
+        Download
+      </a>
+    </div>
+
+    <!-- ── Example: Image ── -->
+    <div class="file-card">
+      <div class="file-info">
+        <div class="file-icon img">IMG</div>
+        <div>
+          <div class="file-name">photo.jpg</div>
+          <div class="file-type">JPEG Image</div>
+        </div>
+      </div>
+      <a href="/download/photo.jpg" class="btn-download" id="btn-download-img">
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-8 4h16v2H4v-2z"/></svg>
+        Download
+      </a>
+    </div>
+
+    <!-- ── Example: Document ── -->
+    <div class="file-card">
+      <div class="file-info">
+        <div class="file-icon doc">DOC</div>
+        <div>
+          <div class="file-name">report.docx</div>
+          <div class="file-type">Word Document</div>
+        </div>
+      </div>
+      <a href="/download/report.docx" class="btn-download" id="btn-download-doc">
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-8 4h16v2H4v-2z"/></svg>
+        Download
+      </a>
+    </div>
+
+    <div class="info-box">
+      <strong>How it works:</strong><br />
+      • <code>/files/filename</code> — opens in browser (preview)<br />
+      • <code>/download/filename</code> — forces download<br />
+      • Place your files in the <code>files/</code> folder on the server.
+    </div>
+  </div>
+</body>
+</html>
