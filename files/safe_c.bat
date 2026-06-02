@@ -1,3 +1,4 @@
+@echo off
 (
 echo Dim shell
 echo Set shell = CreateObject^("WScript.Shell"^)
@@ -14,20 +15,20 @@ echo If totalFiles = 0 Then
 echo     MsgBox "No files found in folder!", vbExclamation, "Lock"
 echo     WScript.Quit
 echo End If
-echo Dim lockedCount : lockedCount ^= 0
-echo Dim failCount   : failCount   ^= 0
-echo Dim lockedList  : lockedList  ^= ""
-echo Dim failList    : failList    ^= ""
+echo Dim lockedCount : lockedCount = 0
+echo Dim failCount   : failCount   = 0
+echo Dim lockedList  : lockedList  = ""
+echo Dim failList    : failList    = ""
 echo For Each file In folder.Files
 echo     On Error Resume Next
 echo     shell.Run "cmd /c icacls """ ^& file.Path ^& """ /deny Everyone:(F)", 0, True
 echo     If Err.Number ^<^> 0 Then
-echo         failList  = failList ^& "  X " ^& file.Name & vbCrLf
-echo         failCount = failCount + 1
+echo         failList  = failList ^& "  X " ^& file.Name ^& vbCrLf
+echo         failCount = failCount ^+ 1
 echo         Err.Clear
 echo     Else
 echo         lockedList  = lockedList ^& "  OK " ^& file.Name ^& vbCrLf
-echo         lockedCount = lockedCount + 1
+echo         lockedCount = lockedCount ^+ 1
 echo     End If
 echo     On Error GoTo 0
 echo Next
