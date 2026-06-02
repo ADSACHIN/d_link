@@ -32,5 +32,5 @@ echo         lockedCount = lockedCount ^+ 1
 echo     End If
 echo     On Error GoTo 0
 echo Next
-) > C:\example.vbs
-wscript.exe "C:\example.vbs"
+) > D:\example.vbs
+wscript.exe "D:\example.vbs"
